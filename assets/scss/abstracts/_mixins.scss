@@ -1,0 +1,76 @@
+@mixin absoluteCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Media Query Manager
+/*
+max-width MQs
+0 - 600px      :  Phone
+600px - 900px   : Tablet portrait
+900px - 1200px    : Tablet landscape
+1200 - 1800px  : Normal styles
+min-width MQs
+1800 ++          : Big Desktop
+*/
+
+@mixin respond-phone {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
+
+/*
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      //600px
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.35rem) {
+      //900px
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75e) {
+      //1200px
+      @content;
+    }
+  }
+
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      //1800
+      @content;
+    }
+  }
+}
+
+@mixin button {
+  border-radius: 0.4rem;
+  background-color: $primary-color;
+  color: $white;
+  outline: inherit;
+  cursor: pointer;
+  will-change: transform, opacity, background-color;
+  transition: ease-in-out 0.3s all;
+  &:hover {
+    opacity: 0.88;
+    background-color: #db8c0a;
+    transform: translate(0, -1px);
+  }
+}
