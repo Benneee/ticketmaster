@@ -107,19 +107,26 @@
             <div class="event__bottom-socials">
               <p class="event__bottom-socials-heading">SOCIAL LINKS</p>
               <p class="event__bottom-socials-link">
-                <NuxtLink to="/" class="social-link">
+                <a
+                  href="http://www.nathanielcole.com"
+                  class="social-link"
+                  rel="no-referrer"
+                >
                   http://www.nathanielcole.com
-                </NuxtLink>
+                </a>
               </p>
               <p class="event__bottom-socials-link">
-                <NuxtLink to="/" class="social-link">
+                <a href="https://twitter.com/nathanielcole" class="social-link">
                   https://twitter.com/nathanielcole
-                </NuxtLink>
+                </a>
               </p>
               <p class="event__bottom-socials-link">
-                <NuxtLink to="/" class="social-link">
+                <a
+                  href="https://instagram.com/nathanielcole/"
+                  class="social-link"
+                >
                   https://instagram.com/nathanielcole/
-                </NuxtLink>
+                </a>
               </p>
             </div>
           </div>

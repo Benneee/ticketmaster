@@ -5,11 +5,29 @@
       <BaseLoading v-if="isLoading" size="larger" />
       <transition v-else name="fade" mode="in-out">
         <section class="events__list">
-          <article v-for="event in events" :key="`event-${event.id}`">
+          <article v-for="(event, index) in events" :key="`event-${index}`">
             <EventCard :event="event" />
           </article>
         </section>
       </transition>
+
+      <div class="events__show-more">
+        <button
+          v-if="pageInfo && !isLoading && showLoadMoreBtn"
+          class="events__show-more-btn"
+          @click="loadMoreEvents"
+        >
+          Show more events
+        </button>
+
+        <button
+          v-if="showGoToTop && !isLoading"
+          class="events__show-more-btn"
+          @click="goToTop"
+        >
+          Go to Top
+        </button>
+      </div>
     </main>
   </div>
 </template>
@@ -18,6 +36,7 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
+  scrollToTop: true,
   data() {
     return {
       page: 1,
@@ -26,6 +45,14 @@ export default {
 
   computed: {
     ...mapGetters(['events', 'pageInfo', 'isLoading']),
+
+    showLoadMoreBtn() {
+      return this.pageInfo.totalPages > this.pageInfo.currentPage
+    },
+
+    showGoToTop() {
+      return this.pageInfo.totalPages === this.pageInfo.currentPage
+    },
   },
 
   created() {
@@ -42,13 +69,21 @@ export default {
     loadMoreEvents() {
       this.getEvents(this.page++)
     },
+
+    goToTop() {
+      this.$router.app.refresh()
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
 .events {
-  padding: 8rem 0rem;
+  padding: 8rem 0.5rem;
+
+  @include respond(tab-port) {
+    padding: 4rem 2rem;
+  }
 
   &__hero {
     font-family: $primary-font;
@@ -76,6 +111,25 @@ export default {
       display: flex;
       flex-wrap: wrap;
       width: 100%;
+    }
+  }
+
+  &__show-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-btn {
+      padding: 2rem 4rem;
+      width: 30%;
+      font-family: $primary-font;
+      cursor: pointer;
+
+      @include respond(tab-port) {
+        width: 100%;
+        padding: 1rem 2rem;
+        font-size: 1.3rem;
+      }
     }
   }
 }
