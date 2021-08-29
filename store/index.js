@@ -6,6 +6,7 @@ export const state = () => ({
     events: [],
     pageData: {},
   },
+  event: {},
   loadingState: false,
 })
 
@@ -14,6 +15,7 @@ export const getters = {
   isLoading: (state) => state.loadingState,
   tickets: (state) => state.tickets,
   pageInfo: (state) => state.eventsInfo.pageData,
+  event: (state) => state.event,
 }
 
 export const mutations = {
@@ -32,6 +34,10 @@ export const mutations = {
 
   setPageData(state, pageData) {
     state.eventsInfo.pageData = { ...pageData }
+  },
+
+  setEvent(state, eventData) {
+    state.event = { ...eventData }
   },
 }
 
@@ -58,6 +64,26 @@ export const actions = {
       commit('setLoading', false)
     } catch (error) {
       this.$toast.error('Error in getting events')
+    }
+  },
+
+  async getEvent({ commit }, eventId) {
+    commit('setLoading', true)
+    try {
+      const { data } = await fetch(`${BASE_URL}/events/${eventId}`).then(
+        (res) => {
+          return res.json()
+        }
+      )
+      const ticketData = await fetch(
+        `${BASE_URL}/ticket-types/events/${eventId}`
+      ).then((res) => res.json())
+
+      data.ticket = ticketData.data
+      commit('setEvent', data)
+      commit('setLoading', false)
+    } catch (error) {
+      this.$toast.error('Error in getting events', error)
     }
   },
 

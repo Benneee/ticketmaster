@@ -1,30 +1,32 @@
 <template>
   <section class="event">
-    <figure class="event__image">
-      <img
-        v-if="event.image"
-        :src="event.image"
-        :alt="event.name"
-        class="event__image-item"
-      />
-      <img
-        v-else
-        class="event__image-item"
-        :src="require('@/assets/images/event-image.png')"
-        :alt="event.name"
-      />
-    </figure>
-    <p class="event__date">{{ formatDate(event.start_time) }}</p>
-    <p class="event__name">
-      {{ event.name }}
-    </p>
-    <p class="event__price">
-      <span v-if="isFree(event)" class="event__price-free"> Free </span>
-      <span v-if="event.is_sold_out" class="event__price-soldout">
-        Sold out
-      </span>
-      <span v-else>{{ getPriceRange(event.ticket) }} </span>
-    </p>
+    <NuxtLink :to="`/events/${event.id}`">
+      <figure class="event__image">
+        <img
+          v-if="event.image"
+          :src="event.image"
+          :alt="event.name"
+          class="event__image-item"
+        />
+        <img
+          v-else
+          class="event__image-item"
+          :src="require('@/assets/images/event-image.png')"
+          :alt="event.name"
+        />
+      </figure>
+      <p class="event__date">{{ formatDate(event.start_time) }}</p>
+      <p class="event__name">
+        {{ event.name }}
+      </p>
+      <p class="event__price">
+        <span v-if="isFree(event)" class="event__price-free"> Free </span>
+        <span v-if="event.is_sold_out" class="event__price-soldout">
+          Sold out
+        </span>
+        <span v-else>{{ getPriceRange(event.ticket) }} </span>
+      </p>
+    </NuxtLink>
   </section>
 </template>
 

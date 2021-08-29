@@ -12,10 +12,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/toast": "^3.3.1",
     "core-js": "^3.15.1",
-    "nuxt": "^2.15.7"
+    "nuxt": "^2.15.7",
+    "vuex-persistedstate": "^4.0.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",

@@ -6,6 +6,10 @@ export default {
       return moment(date).format('Do MMMM YYYY')
     },
 
+    formatDateTime(date) {
+      return moment(date).format('Do, MMM YYYY, HH:mm a')
+    },
+
     getPriceRange(tickets) {
       if (tickets) {
         if (tickets.length > 1) {
@@ -17,7 +21,7 @@ export default {
           return priceRangeValue
         } else if (tickets.length === 1 && tickets[0]) {
           if (tickets[0].price) {
-            return tickets[0].price.toLocaleString()
+            return `N${tickets[0].price.toLocaleString()}`
           }
         }
       }

@@ -6,9 +6,7 @@
       <transition v-else name="fade" mode="in-out">
         <section class="events__list">
           <article v-for="event in events" :key="`event-${event.id}`">
-            <NuxtLink to="/">
-              <EventCard :event="event" />
-            </NuxtLink>
+            <EventCard :event="event" />
           </article>
         </section>
       </transition>
