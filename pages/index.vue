@@ -9,11 +9,6 @@ export default {}
 </script>
 
 <style lang="scss">
-* {
-  font-family: $primary-font;
-  color: $text-color;
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition-duration: 0.3s;

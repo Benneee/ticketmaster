@@ -1,5 +1,5 @@
 <template>
-  <header class="nav-container">
+  <header class="nav__container">
     <div class="header">
       <div class="header__logo">
         <NuxtLink to="/">
@@ -57,19 +57,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.nav-container {
-  align-items: center;
-  width: 100%;
-  margin-top: 2rem;
+.nav__container {
+  @include set-container;
+  font-family: $primary-font;
 
   .header {
-    max-width: 1440px;
-    margin: 0 auto;
-    width: 100%;
-    padding: 1rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include set-width(4rem);
 
     @include respond(tab-port) {
       padding: 0 2rem;
