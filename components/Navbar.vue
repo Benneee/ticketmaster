@@ -90,6 +90,7 @@ export default {
       &-item {
         a {
           font-weight: bold;
+          font-size: 1.4rem;
         }
         &:last-child {
           margin-left: 5rem;
