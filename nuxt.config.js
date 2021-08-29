@@ -28,7 +28,7 @@ export default {
   css: ['~assets/scss/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '~plugins/GlobalMixin.js', mode: 'client' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -38,7 +38,15 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     '@nuxtjs/style-resources',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/moment',
+    '@nuxtjs/toast',
   ],
+
+  toast: {
+    position: 'top-right',
+    duration: 2000,
+  },
 
   styleResources: {
     scss: [
