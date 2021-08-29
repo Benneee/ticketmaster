@@ -2,19 +2,47 @@
   <section class="event">
     <figure class="event__image">
       <img
+        v-if="event.image"
+        :src="event.image"
+        :alt="event.name"
+        class="event__image-item"
+      />
+      <img
+        v-else
         class="event__image-item"
         :src="require('@/assets/images/event-image.png')"
-        :alt="`The event`"
+        :alt="event.name"
       />
     </figure>
-    <p class="event__date">8th February 2019</p>
-    <p class="event__name">The Nathan Cole Experience</p>
-    <p class="event__price">N5000 - N20000</p>
+    <p class="event__date">{{ formatDate(event.start_time) }}</p>
+    <p class="event__name">
+      {{ event.name }}
+    </p>
+    <p class="event__price">
+      <span v-if="isFree(event)" class="event__price-free"> Free </span>
+      <span v-if="event.is_sold_out" class="event__price-soldout">
+        Sold out
+      </span>
+      <span v-else>{{ getPriceRange(event.ticket) }} </span>
+    </p>
   </section>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    event: {
+      type: Object,
+      required: true,
+    },
+  },
+
+  methods: {
+    isFree(event) {
+      return Object.keys(event.ticket).length === 0 || event.is_free
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -26,9 +54,9 @@ export default {}
       height: 23.1rem;
       border-radius: 6px;
       object-fit: cover;
-      max-width: 40rem;
       filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.306764));
       border-radius: 6px;
+      width: 100vw;
     }
   }
 
