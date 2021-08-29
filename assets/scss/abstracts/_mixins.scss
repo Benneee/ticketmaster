@@ -5,6 +5,26 @@
   transform: translate(-50%, -50%);
 }
 
+@mixin set-width($horizontalpadding) {
+  padding: 1rem $horizontalpadding;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin set-container {
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+@mixin format-list {
+  list-style-type: none;
+}
+
 // Media Query Manager
 /*
 max-width MQs

@@ -5,17 +5,17 @@ html {
   height: 100%;
   overflow: hidden;
 
-  @include respond(tab-land) {
-    font-size: 56.25%;
-  }
+  // @include respond(tab-land) {
+  //   font-size: 56.25%;
+  // }
 
-  @include respond(tab-port) {
-    font-size: 50%;
-  }
+  // @include respond(tab-port) {
+  //   font-size: 50%;
+  // }
 
-  @include respond(big-desktop) {
-    font-size: 75%;
-  }
+  // @include respond(big-desktop) {
+  //   font-size: 75%;
+  // }
 }
 
 /* Using the power of inheritance, we set properties like font in the body */
@@ -26,9 +26,9 @@ body {
   height: 100%;
   overflow: auto;
 
-  @include respond(tab-port) {
-    padding: 0;
-  }
+  // @include respond(tab-port) {
+  //   padding: 0;
+  // }
 }
 
 .hidden {
@@ -41,10 +41,6 @@ button {
   &:hover {
     opacity: 0.88;
   }
-}
-.container {
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
 ::selection {
