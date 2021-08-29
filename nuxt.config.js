@@ -31,6 +31,7 @@ export default {
   plugins: [
     { src: '~plugins/GlobalMixin.js', mode: 'client' },
     { src: '~/plugins/vuex-persist.js', mode: 'client' },
+    { src: '~/plugins/backtotop.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

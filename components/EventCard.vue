@@ -6,6 +6,7 @@
           v-if="event.image"
           :src="event.image"
           :alt="event.name"
+          loading="lazy"
           class="event__image-item"
         />
         <img
