@@ -1,0 +1,36 @@
+button {
+  text-transform: uppercase;
+  background-color: $primary-color;
+  color: $white;
+  border-radius: 4.06693px;
+  border: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+
+  &.nav-btn {
+    padding: 1rem 2rem;
+    cursor: pointer;
+  }
+
+  &.pay-btn {
+  }
+
+  @include respond(big-desktop) {
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    letter-spacing: 0.05rem;
+    padding: 1.8rem 14.55rem;
+  }
+
+  @include respond(tab-port) {
+    font-size: 1rem;
+    line-height: 1rem;
+    letter-spacing: 0.05rem;
+    padding: 3rem 10.55rem;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: #db8c0a;
+    opacity: 0.85;
+  }
+}

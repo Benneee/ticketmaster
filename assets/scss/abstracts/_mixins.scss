@@ -5,6 +5,10 @@
   transform: translate(-50%, -50%);
 }
 
+@mixin format-list {
+  list-style-type: none;
+}
+
 // Media Query Manager
 /*
 max-width MQs
