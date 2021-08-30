@@ -23,6 +23,7 @@
           <button
             v-if="eventDetails.ticket.length === 0"
             class="pay-btn reg-btn"
+            @click="registerModalIsOpen = true"
           >
             Register for Free
           </button>
@@ -133,6 +134,17 @@
         </div>
       </section>
     </main>
+
+    <SuccessModal
+      v-if="successModalIsOpen"
+      @success-modal-closed="successModalIsOpen = false"
+    />
+
+    <RegisterModal
+      v-if="registerModalIsOpen"
+      @register-modal-closed="registerModalIsOpen = false"
+      @form-values="submitForm"
+    />
   </div>
 </template>
 
@@ -142,6 +154,8 @@ export default {
   data() {
     return {
       eventDetails: null,
+      successModalIsOpen: false,
+      registerModalIsOpen: false,
     }
   },
 
@@ -167,6 +181,8 @@ export default {
     getSelectedEvent(eventId) {
       this.getEvent(parseInt(eventId, 10))
     },
+
+    submitForm(e) {},
   },
 }
 </script>

@@ -5,6 +5,11 @@
   transform: translate(-50%, -50%);
 }
 
+@mixin width-height($value) {
+  width: $value;
+  height: $value;
+}
+
 @mixin set-width($horizontalpadding) {
   padding: 1rem $horizontalpadding;
   max-width: 1440px;
