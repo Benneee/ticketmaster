@@ -39,6 +39,10 @@ export const mutations = {
   setEvent(state, eventData) {
     state.event = { ...eventData }
   },
+
+  setEventTickets(state, eventTickets) {
+    state.tickets = [...eventTickets]
+  },
 }
 
 export const actions = {
@@ -85,6 +89,10 @@ export const actions = {
     } catch (error) {
       this.$toast.error('Error in getting events', error)
     }
+  },
+
+  setTickets({ commit }, eventTickets) {
+    commit('setEventTickets', eventTickets)
   },
 
   clearTickets({ commit }) {

@@ -24,6 +24,9 @@ button {
     font-family: $primary-font;
   }
 
+  &.change-count {
+  }
+
   @include respond(big-desktop) {
     font-size: 1.4rem;
     line-height: 1.4rem;

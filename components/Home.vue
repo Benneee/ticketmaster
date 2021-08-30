@@ -59,7 +59,7 @@ export default {
     if (this.events.length <= 1) {
       setTimeout(() => {
         this.getEvents(this.page)
-      }, 3000)
+      }, 2500)
     }
   },
 

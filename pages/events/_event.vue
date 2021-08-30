@@ -27,7 +27,11 @@
           >
             Register for Free
           </button>
-          <button v-else to="/" class="pay-btn reg-btn">Buy Tickets</button>
+          <button v-else class="pay-btn reg-btn">
+            <NuxtLink :to="`/checkout/${eventDetails.id}`" class="">
+              Buy Tickets
+            </NuxtLink>
+          </button>
         </div>
         <div class="event__top-img">
           <figure>
@@ -151,6 +155,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 export default {
+  scrollToTop: true,
   data() {
     return {
       eventDetails: null,
@@ -202,10 +207,10 @@ export default {
 
 <style lang="scss" scoped>
 .event__container {
-  min-height: 80vh;
+  min-height: 100vh;
   background-image: url('@/assets/images/Lines.png');
   background-repeat: no-repeat;
-  background-position: bottom 30px right 7px;
+  background-position: bottom 0px right 7px;
   @include respond(tab-port) {
     background-image: none;
   }
