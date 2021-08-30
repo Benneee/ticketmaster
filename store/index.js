@@ -95,7 +95,11 @@ export const actions = {
     commit('setLoading', loadingState)
   },
 
-  // registerForFreeEvent({ commit }, eventId, data) {
-
-  // }
+  async registerForFreeEvent({ commit }, eventId, req) {
+    const response = await fetch(`${BASE_URL}/events/${eventId}/register`, {
+      method: 'POST',
+      body: req,
+    })
+    return response.json()
+  },
 }

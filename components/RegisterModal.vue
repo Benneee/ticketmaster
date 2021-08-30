@@ -11,7 +11,24 @@
           ></i>
         </span>
       </div>
-      <form class="modal-body" @submit.prevent="onSubmit">
+
+      <div v-if="errorsAvailable" class="error__container">
+        <p class="error__cta">Please correct the following error(s):</p>
+        <ul>
+          <li
+            v-for="(error, index) in errors"
+            :key="`error-${index}`"
+            class="error__msg"
+          >
+            {{ error }}
+          </li>
+        </ul>
+      </div>
+      <form
+        ref="registrationForm"
+        class="modal-body"
+        @submit.prevent="onSubmit"
+      >
         <div class="form__container">
           <div class="form__group">
             <label class="form__group-label" for="full-name">Full name</label>
@@ -19,6 +36,7 @@
               id="full-name"
               v-model="name"
               type="text"
+              required
               class="form__group-input"
             />
           </div>
@@ -29,6 +47,7 @@
               id="email"
               v-model="email"
               type="email"
+              required
               class="form__group-input"
             />
           </div>
@@ -40,6 +59,7 @@
               v-model="phone"
               type="text"
               class="form__group-input"
+              required
             />
           </div>
 
@@ -56,20 +76,37 @@
 export default {
   data() {
     return {
+      errors: [],
       email: '',
       phone: '',
       name: '',
+      errorsAvailable: false,
     }
   },
 
   methods: {
+    validateForm(data) {
+      let isValid = true
+      for (const [key, value] of Object.entries(data)) {
+        if (String(value).trim().length <= 0 || !value || value === '') {
+          this.errors.push(`Please enter a valid ${key}`)
+          isValid = false
+        }
+      }
+      return isValid
+    },
+
     onSubmit() {
       const data = {
         email: this.email,
         phone: this.phone,
         name: this.name,
       }
-      this.$emit('form-values', data)
+      if (!this.validateForm(data)) {
+        this.errorsAvailable = true
+      } else {
+        this.$emit('form-values', data)
+      }
     },
   },
 }
@@ -152,6 +189,17 @@ export default {
         color: #ffffff;
       }
     }
+  }
+  .error__msg {
+    color: $red;
+    margin-top: 1.5rem;
+    margin-bottom: -2rem;
+    font-family: $secondary-font;
+  }
+
+  .error__cta {
+    color: $tertiary-color;
+    font-family: $secondary-font;
   }
 }
 </style>

@@ -176,13 +176,26 @@ export default {
   },
 
   methods: {
-    ...mapActions(['getEvent']),
+    ...mapActions(['getEvent', 'registerForFreeEvent']),
 
     getSelectedEvent(eventId) {
       this.getEvent(parseInt(eventId, 10))
     },
 
-    submitForm(e) {},
+    submitForm(e) {
+      const eventId = this.$route.params.event
+      if (e) {
+        this.registerForFreeEvent(eventId, e)
+          .then((res) => {
+            if (res.status === 'success') {
+              this.$toast.success('You have registered successfully')
+              this.registerModalIsOpen = false
+              this.successModalIsOpen = true
+            }
+          })
+          .catch((error) => this.$toast.error(error))
+      }
+    },
   },
 }
 </script>
