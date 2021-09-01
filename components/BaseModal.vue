@@ -51,8 +51,8 @@ export default {
   background: rgba($background-color, 0.4);
 
   &.default .modal-content {
-    width: 470px;
-    height: 584px;
+    width: 47rem;
+    height: 65rem;
     @media screen and (max-width: 840px) {
       width: 95%;
     }

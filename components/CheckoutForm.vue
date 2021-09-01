@@ -21,51 +21,76 @@
       </ul>
     </div>
 
-    <form ref="paymentForm" class="form-body" @submit.prevent="onSubmit">
-      <div class="form__container">
-        <div class="form__group">
-          <label class="form__group-label" for="full-name">Full name</label>
-          <input
-            id="full-name"
-            v-model="name"
-            type="text"
-            required
-            class="form__group-input"
-          />
-        </div>
+    <ValidationObserver v-slot="{ invalid }">
+      <form class="form-body" @submit.prevent="onSubmit">
+        <div class="form__container">
+          <ValidationProvider
+            v-slot="{ errors }"
+            name="Full name"
+            rules="required"
+          >
+            <div class="form__group">
+              <label class="form__group-label" for="full-name">Full name</label>
+              <input
+                id="full-name"
+                v-model="name"
+                type="text"
+                required
+                class="form__group-input"
+              />
+              <span class="error__msg">{{ errors[0] }}</span>
+            </div>
+          </ValidationProvider>
 
-        <div class="form__group">
-          <label class="form__group-label" for="email">Email address</label>
-          <input
-            id="email"
-            v-model="email"
-            type="email"
-            required
-            class="form__group-input"
-          />
-        </div>
+          <ValidationProvider
+            v-slot="{ errors }"
+            name="Email"
+            rules="required|email"
+          >
+            <div class="form__group">
+              <label class="form__group-label" for="email">Email address</label>
+              <input
+                id="email"
+                v-model="email"
+                type="email"
+                required
+                class="form__group-input"
+              />
+              <span class="error__msg">{{ errors[0] }}</span>
+            </div>
+          </ValidationProvider>
 
-        <div class="form__group">
-          <label class="form__group-label" for="phone">Phone number</label>
-          <input
-            id="phone"
-            v-model="phone"
-            type="text"
-            class="form__group-input"
-            required
-          />
-        </div>
+          <ValidationProvider
+            v-slot="{ errors }"
+            name="Phone number"
+            rules="required|phone"
+          >
+            <div class="form__group">
+              <label class="form__group-label" for="phone">Phone number</label>
+              <input
+                id="phone"
+                v-model="phone"
+                type="text"
+                class="form__group-input"
+                required
+              />
+              <span class="error__msg">{{ errors[0] }}</span>
+            </div>
+          </ValidationProvider>
 
-        <div class="checkout__form-total">
-          <p class="total-label">Total Payment</p>
-          <p class="total-amount">N{{ total }}</p>
-        </div>
+          <div class="checkout__form-total">
+            <p class="total-label">Total Payment</p>
+            <p class="total-amount">N{{ total }}</p>
+          </div>
 
-        <div class="submit">
-          <button type="submit" class="submit__btn">Pay N{{ total }}</button>
+          <div class="submit">
+            <button :disabled="invalid" type="submit" class="submit__btn">
+              Pay N{{ total }}
+            </button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </ValidationObserver>
 
     <div class="checkout__form-money-back">
       <div class="verified">
@@ -92,7 +117,6 @@ export default {
   },
   data() {
     return {
-      errors: [],
       email: '',
       phone: '',
       name: '',
@@ -118,11 +142,8 @@ export default {
         phone: this.phone,
         name: this.name,
       }
-      if (!this.validateForm(data)) {
-        this.errorsAvailable = true
-      } else {
-        this.$emit('make-payment', data)
-      }
+
+      this.$emit('make-payment', data)
     },
   },
 }
@@ -146,6 +167,7 @@ export default {
 
   .form-body {
     margin-top: 3rem;
+    margin-bottom: 2rem;
 
     .form__group {
       &-label {
@@ -172,7 +194,7 @@ export default {
         font-family: $primary-font;
         padding: 1.8rem;
 
-        margin-bottom: 2.5rem;
+        margin-bottom: 0.7rem;
         &-error {
           border: 1px solid $red;
         }
@@ -251,9 +273,8 @@ export default {
 
   .error__msg {
     color: $red;
-    margin-top: 1.5rem;
-    margin-bottom: -2rem;
-    font-family: $secondary-font;
+    font-family: $primary-font;
+    text-transform: lowercase;
   }
 
   .error__cta {

@@ -12,63 +12,72 @@
         </span>
       </div>
 
-      <div v-if="errorsAvailable" class="error__container">
-        <p class="error__cta">Please correct the following error(s):</p>
-        <ul>
-          <li
-            v-for="(error, index) in errors"
-            :key="`error-${index}`"
-            class="error__msg"
-          >
-            {{ error }}
-          </li>
-        </ul>
-      </div>
+      <ValidationObserver v-slot="{ invalid }">
+        <form class="modal-body" @submit.prevent="onSubmit">
+          <div class="form__container">
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="Full name"
+              rules="required"
+            >
+              <div class="form__group">
+                <label class="form__group-label" for="full-name"
+                  >Full name</label
+                >
+                <input
+                  id="full-name"
+                  v-model="name"
+                  type="text"
+                  class="form__group-input"
+                />
+                <span class="error__msg">{{ errors[0] }}</span>
+              </div>
+            </ValidationProvider>
 
-      <form
-        ref="registrationForm"
-        class="modal-body"
-        @submit.prevent="onSubmit"
-      >
-        <div class="form__container">
-          <div class="form__group">
-            <label class="form__group-label" for="full-name">Full name</label>
-            <input
-              id="full-name"
-              v-model="name"
-              type="text"
-              required
-              class="form__group-input"
-            />
-          </div>
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="Email"
+              rules="required|email"
+            >
+              <div class="form__group">
+                <label class="form__group-label" for="email"
+                  >Email address</label
+                >
+                <input
+                  id="email"
+                  v-model="email"
+                  type="email"
+                  class="form__group-input"
+                />
+                <span class="error__msg">{{ errors[0] }}</span>
+              </div>
+            </ValidationProvider>
 
-          <div class="form__group">
-            <label class="form__group-label" for="email">Email address</label>
-            <input
-              id="email"
-              v-model="email"
-              type="email"
-              required
-              class="form__group-input"
-            />
-          </div>
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="Phone number"
+              rules="required|phone"
+            >
+              <div class="form__group">
+                <label class="form__group-label" for="phone"
+                  >Phone number</label
+                >
+                <input
+                  id="phone"
+                  v-model="phone"
+                  type="text"
+                  class="form__group-input"
+                />
+                <span class="error__msg">{{ errors[0] }}</span>
+              </div>
+            </ValidationProvider>
 
-          <div class="form__group">
-            <label class="form__group-label" for="phone">Phone number</label>
-            <input
-              id="phone"
-              v-model="phone"
-              type="text"
-              class="form__group-input"
-              required
-            />
+            <div class="submit">
+              <button :disabled="invalid" class="submit__btn">Register</button>
+            </div>
           </div>
-
-          <div class="submit">
-            <button class="submit__btn">Register</button>
-          </div>
-        </div>
-      </form>
+        </form>
+      </ValidationObserver>
     </div>
   </BaseModal>
 </template>
@@ -77,7 +86,6 @@
 export default {
   data() {
     return {
-      errors: [],
       email: '',
       phone: '',
       name: '',
@@ -86,28 +94,13 @@ export default {
   },
 
   methods: {
-    validateForm(data) {
-      let isValid = true
-      for (const [key, value] of Object.entries(data)) {
-        if (String(value).trim().length <= 0 || !value || value === '') {
-          this.errors.push(`Please enter a valid ${key}`)
-          isValid = false
-        }
-      }
-      return isValid
-    },
-
     onSubmit() {
       const data = {
         email: this.email,
         phone: this.phone,
         name: this.name,
       }
-      if (!this.validateForm(data)) {
-        this.errorsAvailable = true
-      } else {
-        this.$emit('form-values', data)
-      }
+      this.$emit('form-values', data)
     },
   },
 }
@@ -144,6 +137,7 @@ export default {
     margin-top: 3rem;
 
     .form__group {
+      margin-bottom: 2.5rem;
       &-label {
         display: block;
 
@@ -162,13 +156,12 @@ export default {
         background: #fdfdfd;
         border: 1px solid #e0e0e0;
         border-radius: 4px;
-
         outline: inherit;
         font-size: inherit;
         font-family: $primary-font;
         padding: 1.8rem;
 
-        margin-bottom: 2.5rem;
+        margin-bottom: 0.7rem;
         &-error {
           border: 1px solid $red;
         }
@@ -193,9 +186,8 @@ export default {
   }
   .error__msg {
     color: $red;
-    margin-top: 1.5rem;
-    margin-bottom: -2rem;
-    font-family: $secondary-font;
+    font-family: $primary-font;
+    text-transform: lowercase;
   }
 
   .error__cta {
