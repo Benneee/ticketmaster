@@ -1,6 +1,11 @@
 <template>
   <div>
-    <button class="change-count" @click="$emit('increase-count', ticketId)">
+    <button
+      class="change-count"
+      aria-roledescription="Increase ticket count"
+      role="button"
+      @click="$emit('increase-count', ticketId)"
+    >
       <img
         :src="require('@/assets/images/+.png')"
         alt="increase-ticket-count"
