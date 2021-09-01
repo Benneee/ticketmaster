@@ -1,6 +1,7 @@
 <template>
   <div>
     <Nuxt />
+    <!--ToDo: Something fishy about file naming convention with HTML: investigate -->
   </div>
 </template>
 
