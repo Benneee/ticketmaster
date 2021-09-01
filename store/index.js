@@ -97,6 +97,7 @@ export const actions = {
       commit('setLoading', false)
     } catch (error) {
       this.$toast.error('Error in getting events', error)
+      commit('setLoading', false)
     }
   },
 
@@ -126,6 +127,7 @@ export const actions = {
       commit('setLoading', false)
     } catch (error) {
       this.$toast.error('Error in getting events')
+      commit('setLoading', false)
     }
   },
 
