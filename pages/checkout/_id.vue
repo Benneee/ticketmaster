@@ -70,7 +70,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 export default {
-  layout: 'NoNav',
+  layout: 'NoNav', // Somethimg to investigate later
   data() {
     return {
       eventDetails: null,

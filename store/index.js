@@ -64,7 +64,11 @@ export const mutations = {
       (ticket) => ticket.id === ticketId
     )
     const ticketToDecrement = state.tickets[ticketIdx]
-    // Remember I disable the "DecreaseCount" button when the count of a particular ticket is 0, so there's little to no chance 0 will be sent here :)
+    /**
+     * Remember I disable the "DecreaseCount" button
+     * when the count of a particular ticket is 0, so there's little
+     * to no chance 0 will be sent here :)
+     */
     ticketToDecrement.count--
     state.tickets.splice(ticketIdx, 1, ticketToDecrement)
   },
@@ -159,6 +163,5 @@ export const actions = {
     })
     return response.json()
   },
-
   // Ticket actions end
 }
