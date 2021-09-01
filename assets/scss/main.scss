@@ -5,8 +5,7 @@
   font-family: Flutterwave;
   font-weight: 400;
   src: local('Flutterwave'),
-    url('~@/assets/fonts/5da28fe.ttf') format('truetype');
-  text-rendering: optimizeLegibility;
+    url('~@/assets/fonts/FLW-Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: Flutterwave;
@@ -14,21 +13,12 @@
   font-style: normal;
   src: local('Flutterwave'),
     url('~@/assets/fonts/8acb0e3.ttf') format('truetype');
-  text-rendering: optimizeLegibility;
 }
 @font-face {
   font-family: Flutterwave;
   font-weight: 900;
   src: local('Flutterwave'),
     url('~@/assets/fonts/2b2a06b.ttf') format('truetype');
-  text-rendering: optimizeLegibility;
-}
-@font-face {
-  font-family: Flutterwave;
-  font-style: italic;
-  src: local('Flutterwave'),
-    url('~@/assets/fonts/FLW-Italic.ttf') format('truetype');
-  text-rendering: optimizeLegibility;
 }
 @font-face {
   font-family: 'SF Display';

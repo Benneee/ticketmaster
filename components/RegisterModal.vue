@@ -181,7 +181,7 @@ export default {
         border-radius: 4px;
         width: 100%;
         padding: 1.5rem;
-
+        background-color: $primary-color;
         font-family: $primary-font;
         font-size: 1.4rem;
         text-align: center;

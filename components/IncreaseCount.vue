@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="change-count" @click="$emit('increaseCount', ticketId)">
+    <button class="change-count" @click="$emit('increase-count', ticketId)">
       <img
         :src="require('@/assets/images/+.png')"
         alt="increase-ticket-count"

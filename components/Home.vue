@@ -124,6 +124,7 @@ export default {
       width: 30%;
       font-family: $primary-font;
       cursor: pointer;
+      background-color: $primary-color;
 
       @include respond(tab-port) {
         width: 100%;
