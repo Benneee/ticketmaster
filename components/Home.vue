@@ -80,7 +80,7 @@ export default {
 
 <style lang="scss" scoped>
 .events {
-  padding: 8rem 0.5rem;
+  padding: 8rem 10rem;
 
   @include respond(tab-port) {
     padding: 4rem 2rem;
