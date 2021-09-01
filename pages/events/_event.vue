@@ -23,10 +23,15 @@
           <button
             v-if="eventDetails.ticket.length === 0"
             class="pay-btn reg-btn"
+            @click="registerModalIsOpen = true"
           >
             Register for Free
           </button>
-          <button v-else to="/" class="pay-btn reg-btn">Buy Tickets</button>
+          <button v-else class="pay-btn reg-btn">
+            <NuxtLink :to="`/checkout/${eventDetails.id}`" class="">
+              Buy Tickets
+            </NuxtLink>
+          </button>
         </div>
         <div class="event__top-img">
           <figure>
@@ -133,15 +138,29 @@
         </div>
       </section>
     </main>
+
+    <SuccessModal
+      v-if="successModalIsOpen"
+      @success-modal-closed="successModalIsOpen = false"
+    />
+
+    <RegisterModal
+      v-if="registerModalIsOpen"
+      @register-modal-closed="registerModalIsOpen = false"
+      @form-values="submitForm"
+    />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 export default {
+  scrollToTop: true,
   data() {
     return {
       eventDetails: null,
+      successModalIsOpen: false,
+      registerModalIsOpen: false,
     }
   },
 
@@ -162,10 +181,25 @@ export default {
   },
 
   methods: {
-    ...mapActions(['getEvent']),
+    ...mapActions(['getEvent', 'registerForFreeEvent']),
 
     getSelectedEvent(eventId) {
       this.getEvent(parseInt(eventId, 10))
+    },
+
+    submitForm(e) {
+      const eventId = this.$route.params.event
+      if (e) {
+        this.registerForFreeEvent(eventId, e)
+          .then((res) => {
+            if (res.status === 'success') {
+              this.$toast.success('You have registered successfully')
+              this.registerModalIsOpen = false
+              this.successModalIsOpen = true
+            }
+          })
+          .catch((error) => this.$toast.error(error))
+      }
     },
   },
 }
@@ -173,10 +207,10 @@ export default {
 
 <style lang="scss" scoped>
 .event__container {
-  min-height: 80vh;
+  min-height: 100vh;
   background-image: url('@/assets/images/Lines.png');
   background-repeat: no-repeat;
-  background-position: bottom 30px right 7px;
+  background-position: bottom 0px right 7px;
   @include respond(tab-port) {
     background-image: none;
   }

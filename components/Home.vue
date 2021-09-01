@@ -59,7 +59,7 @@ export default {
     if (this.events.length <= 1) {
       setTimeout(() => {
         this.getEvents(this.page)
-      }, 3000)
+      }, 2500)
     }
   },
 
@@ -124,6 +124,7 @@ export default {
       width: 30%;
       font-family: $primary-font;
       cursor: pointer;
+      background-color: $primary-color;
 
       @include respond(tab-port) {
         width: 100%;

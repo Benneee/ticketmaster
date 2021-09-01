@@ -1,6 +1,7 @@
 html {
   /* font-size: 10px; */
   /* Therefore, 1rem = 10px */
+  // Already in CSS Reset
   // font-size: 62.5%;
   height: 100%;
   overflow: hidden;
@@ -30,6 +31,10 @@ body {
   // @include respond(tab-port) {
   //   padding: 0;
   // }
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .hidden {
