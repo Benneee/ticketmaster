@@ -58,9 +58,7 @@ export default {
 
   created() {
     if (this.events.length <= 1) {
-      setTimeout(() => {
-        this.getEvents(this.page)
-      }, 2500)
+      this.getEvents(this.page)
     }
   },
 
