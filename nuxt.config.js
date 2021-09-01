@@ -32,6 +32,7 @@ export default {
     { src: '~plugins/GlobalMixin.js', mode: 'client' },
     { src: '~/plugins/vuex-persist.js', mode: 'client' },
     { src: '~/plugins/backtotop.js', mode: 'client' },
+    { src: '~/plugins/vee-validate.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -63,5 +64,7 @@ export default {
   modules: ['@nuxtjs/axios'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: ['vee-validate'],
+  },
 }
