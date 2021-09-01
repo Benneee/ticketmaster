@@ -62,7 +62,7 @@
         </div>
 
         <div class="submit">
-          <button class="submit__btn">Pay N{{ total }}</button>
+          <button type="submit" class="submit__btn">Pay N{{ total }}</button>
         </div>
       </div>
     </form>

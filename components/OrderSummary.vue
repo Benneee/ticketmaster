@@ -14,6 +14,7 @@
         -
         <span class="ticket-type"> {{ ticket.name }}</span>
       </p>
+
       <p class="order__summary-ticket-price">
         N{{ convertToLocaleString(ticket.price) }}
       </p>

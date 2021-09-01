@@ -24,6 +24,7 @@
           </li>
         </ul>
       </div>
+
       <form
         ref="registrationForm"
         class="modal-body"

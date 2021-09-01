@@ -3,6 +3,7 @@
     <main class="events">
       <h1 class="events__hero">The best events happening now.</h1>
       <BaseLoading v-if="isLoading" size="larger" />
+
       <transition v-else name="fade" mode="in-out">
         <section class="events__list">
           <article v-for="(event, index) in events" :key="`event-${index}`">
