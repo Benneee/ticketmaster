@@ -53,7 +53,8 @@ export default {
   &.default .modal-content {
     width: 47rem;
     height: 65rem;
-    @media screen and (max-width: 840px) {
+    @include respond(tab-port) {
+      height: 70rem;
       width: 95%;
     }
   }

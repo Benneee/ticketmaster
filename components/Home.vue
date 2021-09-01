@@ -58,9 +58,7 @@ export default {
 
   created() {
     if (this.events.length <= 1) {
-      setTimeout(() => {
-        this.getEvents(this.page)
-      }, 2500)
+      this.getEvents(this.page)
     }
   },
 
@@ -80,7 +78,7 @@ export default {
 
 <style lang="scss" scoped>
 .events {
-  padding: 8rem 0.5rem;
+  padding: 8rem 10rem;
 
   @include respond(tab-port) {
     padding: 4rem 2rem;
