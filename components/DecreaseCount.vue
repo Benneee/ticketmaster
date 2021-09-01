@@ -2,6 +2,8 @@
   <div>
     <button
       class="change-count"
+      aria-roledescription="Decrease ticket count"
+      role="button"
       :disabled="currentTicketCount === 0"
       @click="$emit('decrease-count', ticketId)"
     >
