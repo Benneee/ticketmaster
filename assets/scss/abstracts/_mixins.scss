@@ -84,18 +84,3 @@ $breakpoint argument choices:
     }
   }
 }
-
-@mixin button {
-  border-radius: 0.4rem;
-  background-color: $primary-color;
-  color: $white;
-  outline: inherit;
-  cursor: pointer;
-  will-change: transform, opacity, background-color;
-  transition: ease-in-out 0.3s all;
-  &:hover {
-    opacity: 0.88;
-    background-color: #db8c0a;
-    transform: translate(0, -1px);
-  }
-}
