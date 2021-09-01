@@ -267,7 +267,7 @@ export default {
         margin-bottom: 1.5rem;
 
         @include respond(tab-port) {
-          font-size: 3rem;
+          font-size: 2.7rem;
           line-height: 2rem;
         }
       }
