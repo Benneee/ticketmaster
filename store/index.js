@@ -159,6 +159,5 @@ export const actions = {
     })
     return response.json()
   },
-
   // Ticket actions end
 }
